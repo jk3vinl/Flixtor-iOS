@@ -31,7 +31,7 @@ struct HomeView: View {
                     
                     TopRowButtons(topRowSelection: $topRowSelection, homeGenre: $homeGenre, showGenreSelection: $showGenreSelection, showTopRowSelection: $showTopRowSelection)
                     
-                    TopMoviePreview(movie: exampleMovie5)
+                    TopMoviePreview(movie: vm.getTopMovie(topRowSelection: topRowSelection), movieDetailToShow: $movieDetailToShow)
                         .frame(width: screen.width)
                         .padding(.top, -110)
                         .zIndex(-1)

@@ -11,6 +11,8 @@ import KingfisherSwiftUI
 struct TopMoviePreview: View {
     var movie: Movie
     
+    @Binding var movieDetailToShow: Movie?
+    
     func isCategoryLast(_ cat: String) -> Bool {
         let catCount = movie.categories.count
         
@@ -66,7 +68,7 @@ struct TopMoviePreview: View {
                     Spacer()
                     
                     SmallVerticalButton(text: "Info", isOnImage: "info.circle", isOffImage: "info.circle", isOn: true) {
-                        //
+                        movieDetailToShow = movie
                     }
                     
                     Spacer()
@@ -85,6 +87,6 @@ struct TopMoviePreview: View {
 
 struct TopMoviePreview_Previews: PreviewProvider {
     static var previews: some View {
-        TopMoviePreview(movie: exampleMovie1)
+        TopMoviePreview(movie: exampleMovie1, movieDetailToShow: .constant(nil))
     }
 }
