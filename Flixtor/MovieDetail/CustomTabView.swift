@@ -56,7 +56,7 @@ struct CustomTabView: View {
             // Selected View
             switch currentTab {
             case .episodes:
-                EpisodesView(episodes: movie.episodes ?? [], showSeasonPicker: $showSeasonPicker, selectedSeason: $selectedSeason)
+                EpisodesView(episodes: movie.episodes ?? [], totalSeasons: movie.numberOfSeasons ?? 0, showSeasonPicker: $showSeasonPicker, selectedSeason: $selectedSeason)
             case .trailers:
                 TrailerList(trailers: movie.trailers)
             case .more:

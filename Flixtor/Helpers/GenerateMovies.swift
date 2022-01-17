@@ -12,31 +12,44 @@ func generateMovies(_ count: Int) -> [Movie] {
     
     var allMovies: [Movie] = []
     
-    for _ in 0..<count {
+    for index in 0..<count {
         let id = UUID().uuidString
         
-        let nameLength = Int.random(in: 9..<20)
-        let name = randomString(length: nameLength)
         
-        let randThumbnail = Int.random(in: 0...9)
-        let thumbnail = URL(string: "https://picsum.photos/300/10\(randThumbnail)")!
+        let nameLength = Int.random(in: 3...5)
+        let nameLength2 = Int.random(in: 5...7)
+        let name = randomString(length: nameLength) + " " + randomString(length: nameLength2)
         
-        let year = Int.random(in: 2000...2020)
+        let thumbnail = URL(string: "https://picsum.photos/300/10\(index)")!
+        
+        let year = Int.random(in: 2000...2022)
         
         let cast = "Lorem ipsum, dolor sit"
         let creators = "felis non, libero consectetur"
         let categories = ["consectetur", "neque", "felis", "libero"]
         
-        let numSeasons = Int.random(in: 1...3)
+        let numSeasons = Int.random(in: 3...5)
         
-        var allEpisodes: [Episode] = []
+        let epinameLength = Int.random(in: 3...5)
+        let epinameLength2 = Int.random(in: 5...7)
+        let epiname = randomString(length: epinameLength) + " " + randomString(length: epinameLength2)
+        
+        // First episode match
+        let epid = UUID().uuidString
+        
+        let randThumbnail = Int.random(in: 0...9)
+        let epiThumbnail = "https://picsum.photos/300/10\(randThumbnail)"
+        
+        let desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at purus diam. Nullam a nulla a augue eleifend convallis ac vitae neque. Curabitur sit amet felis non libero consectetur euismod."
+        let randLength = Int.random(in: 20..<59)
+        
+        let episode = Episode(id: epid, name: epiname, season: 1, episodeNumber: 1, thumbnailImageURLString: epiThumbnail, description: desc, length: randLength, videoURL: exampleVideoURL)
+        
+        var allEpisodes: [Episode] = [episode]
         
         for i in 1...numSeasons {
             allEpisodes.append(contentsOf: generateEpisodes(5, forSeason: i))
         }
-        
-        let epinameLength = Int.random(in: 9..<20)
-        let epiname = randomString(length: epinameLength)
         
         let epidescLength = Int.random(in: 150..<200)
         let epidesc = randomString(length: epidescLength)
@@ -57,14 +70,12 @@ func generateMovies(_ count: Int) -> [Movie] {
 func generateTrailers(_ count: Int) -> [Trailer] {
     var allTrailers: [Trailer] = []
     
-    for _ in 0..<count {
+    for index in 0..<count {
         let id = UUID().uuidString
         
-        let nameLength = Int.random(in: 9..<20)
-        let name = randomString(length: nameLength)
+        let name = "Trailer \(index + 1): " + randomString(length: Int.random(in: 6...8))
         
-        let randThumbnail = Int.random(in: 0...9)
-        let thumbnail = URL(string: "https://picsum.photos/300/10\(randThumbnail)")!
+        let thumbnail = URL(string: "https://picsum.photos/300/10\(index)")!
         
         let trailer = Trailer(id: id, name: name, videoURL: exampleVideoURL, thumbnailImageURL: thumbnail)
         allTrailers.append(trailer)
@@ -75,12 +86,13 @@ func generateTrailers(_ count: Int) -> [Trailer] {
 
 func generateEpisodes(_ count: Int, forSeason season: Int) -> [Episode] {
     var allEpisodes: [Episode] = []
-    
-    for num in 0..<count {
+    let startIndex = season == 1 ? 1 : 0
+    for num in startIndex..<count {
         let id = UUID().uuidString
         
-        let nameLength = Int.random(in: 9..<20)
-        let name = randomString(length: nameLength)
+        let epinameLength = Int.random(in: 3...5)
+        let epinameLength2 = Int.random(in: 5...7)
+        let epiname = randomString(length: epinameLength) + " " + randomString(length: epinameLength2)
         
         let randThumbnail = Int.random(in: 0...9)
         let thumbnail = "https://picsum.photos/300/10\(randThumbnail)"
@@ -88,7 +100,7 @@ func generateEpisodes(_ count: Int, forSeason season: Int) -> [Episode] {
         let desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at purus diam. Nullam a nulla a augue eleifend convallis ac vitae neque. Curabitur sit amet felis non libero consectetur euismod."
         let randLength = Int.random(in: 20..<59)
         
-        let episode = Episode(id: id, name: name, season: season, episodeNumber: num + 1, thumbnailImageURLString: thumbnail, description: desc, length: randLength, videoURL: exampleVideoURL)
+        let episode = Episode(id: id, name: epiname, season: season, episodeNumber: num + 1, thumbnailImageURLString: thumbnail, description: desc, length: randLength, videoURL: exampleVideoURL)
         
         allEpisodes.append(episode)
     }

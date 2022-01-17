@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EpisodesView: View {
     var episodes: [Episode]
+    let totalSeasons: Int
     
     @Binding var showSeasonPicker: Bool
     @Binding var selectedSeason: Int
@@ -26,10 +27,13 @@ struct EpisodesView: View {
                 }, label: {
                     Group {
                         Text("Season \(selectedSeason)")
-                        Image(systemName: "chevron.down")
+                        if totalSeasons > 1 {
+                            Image(systemName: "chevron.down")
+                        }
                     }
                     .font(.system(size: 16))
                 })
+                .disabled(totalSeasons <= 1)
                 
                 Spacer()
             }
@@ -80,7 +84,7 @@ struct EpisodesView_Previews: PreviewProvider {
             Color.black
                 .edgesIgnoringSafeArea(.all)
             
-            EpisodesView(episodes: allExampleEpisodes, showSeasonPicker: .constant(false), selectedSeason: .constant(1))
+            EpisodesView(episodes: allExampleEpisodes, totalSeasons: 1, showSeasonPicker: .constant(false), selectedSeason: .constant(1))
         }
     }
 }

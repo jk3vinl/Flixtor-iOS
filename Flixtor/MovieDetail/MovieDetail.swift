@@ -13,10 +13,11 @@ struct MovieDetail: View {
     let screen = UIScreen.main.bounds
     
     @State private var showSeasonPicker = false
-    @State private var selectedSeason = 1
+    @State private(set) var selectedSeason: Int
     @State private var moreMovieDetailToShow: Movie? = nil
     
     @Binding var movieDetailToShow: Movie?
+    
     
     var body: some View {
         ZStack {
@@ -123,7 +124,7 @@ struct MovieDetail: View {
                 }
             }
             if moreMovieDetailToShow != nil {
-                MovieDetail(movie: moreMovieDetailToShow!, movieDetailToShow: $moreMovieDetailToShow)
+                MovieDetail(movie: moreMovieDetailToShow!, selectedSeason: moreMovieDetailToShow?.currentEpisode?.season ?? 1, movieDetailToShow: $moreMovieDetailToShow)
             }
         }
     }
@@ -131,7 +132,7 @@ struct MovieDetail: View {
 
 struct MovieDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetail(movie: generateMovies(1).first!, movieDetailToShow: .constant(nil))
+        MovieDetail(movie: generateMovies(1).first!, selectedSeason: 1, movieDetailToShow: .constant(nil))
     }
 }
 
