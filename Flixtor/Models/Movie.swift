@@ -87,3 +87,21 @@ enum MovieType {
     case movie
     case tvShow
 }
+
+struct NewMovieData: Codable {
+    let items: [NewMovieDataDetail]
+    let errorMessage: String
+}
+
+struct NewMovieDataDetail: Hashable, Codable {
+    let id: String
+    let title: String
+    let year: String
+    let image: String
+    let runtimeMins: String
+    let plot: String
+    let contentRating: String
+    let genres: String
+    let directors: String
+    let stars: String
+}
