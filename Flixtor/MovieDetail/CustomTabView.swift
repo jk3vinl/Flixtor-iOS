@@ -16,6 +16,7 @@ struct CustomTabView: View {
     
     @Binding var showSeasonPicker: Bool
     @Binding var selectedSeason: Int
+    @Binding var movieDetailToShow: Movie?
     
     func widthForTab(_ tab: CustomTab) -> CGFloat {
         let string = tab.rawValue
@@ -59,7 +60,7 @@ struct CustomTabView: View {
             case .trailers:
                 TrailerList(trailers: movie.trailers)
             case .more:
-                MoreLikeThis(movies: movie.moreLikeThisMovies)
+                MoreLikeThis(movies: movie.moreLikeThisMovies, movieDetailToShow: $movieDetailToShow)
             }
         }
         .foregroundColor(.white)
@@ -79,7 +80,7 @@ struct CustomTabView_Previews: PreviewProvider {
                 .edgesIgnoringSafeArea(.all)
             
             
-            CustomTabView(currentTab: .episodes, tabs: [.episodes, .trailers, .more], movie: exampleMovie1, showSeasonPicker: .constant(false), selectedSeason: .constant(1))
+            CustomTabView(currentTab: .episodes, tabs: [.episodes, .trailers, .more], movie: exampleMovie1, showSeasonPicker: .constant(false), selectedSeason: .constant(1), movieDetailToShow: .constant(nil))
         }
     }
 }

@@ -33,7 +33,9 @@ struct HomeStack: View {
                                 StandardHomeMovie(movie: movie)
                                     .frame(width: 135, height: 200)
                                     .onTapGesture(perform: {
-                                        movieDetailToShow = movie
+                                        withAnimation(.easeIn) {
+                                            movieDetailToShow = movie
+                                        }
                                     })
                             }
                         }

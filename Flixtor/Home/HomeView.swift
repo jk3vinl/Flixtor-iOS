@@ -156,6 +156,7 @@ struct TopRowButtons: View {
             HStack {
                 Button(action: {
                     topRowSelection = .home
+                    homeGenre = .AllGenres
                 }, label: {
                     Image("Flixtor Logo")
                         .resizable()
@@ -170,6 +171,7 @@ struct TopRowButtons: View {
                 
                 Button(action: {
                     topRowSelection = .tvShows
+                    homeGenre = .AllGenres
                 }, label: {
                     Text(HomeTopRow.tvShows.rawValue)
                 })
@@ -180,6 +182,7 @@ struct TopRowButtons: View {
                 
                 Button(action: {
                     topRowSelection = .movies
+                    homeGenre = .AllGenres
                 }, label: {
                     Text(HomeTopRow.movies.rawValue)
                 })
@@ -189,6 +192,7 @@ struct TopRowButtons: View {
                 
                 Button(action: {
                     topRowSelection = .myList
+                    homeGenre = .AllGenres
                 }, label: {
                     Text(HomeTopRow.myList.rawValue)
                 })
@@ -201,6 +205,7 @@ struct TopRowButtons: View {
             HStack {
                 Button(action: {
                     topRowSelection = .home
+                    homeGenre = .AllGenres
                 }, label: {
                     Image("Flixtor Logo")
                         .resizable()

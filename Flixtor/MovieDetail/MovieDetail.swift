@@ -14,6 +14,7 @@ struct MovieDetail: View {
     
     @State private var showSeasonPicker = false
     @State private var selectedSeason = 1
+    @State private var moreMovieDetailToShow: Movie? = nil
     
     @Binding var movieDetailToShow: Movie?
     
@@ -71,7 +72,12 @@ struct MovieDetail: View {
                             }
                             .padding(.leading, 20)
                             
-                            CustomTabView(currentTab: movie.movieType == .movie ? .trailers : .episodes, tabs: movie.movieType == .movie ? [.trailers, .more] : [.episodes, .trailers, .more], movie: movie, showSeasonPicker: $showSeasonPicker, selectedSeason: $selectedSeason)
+                            CustomTabView(currentTab: movie.movieType == .movie ? .trailers : .episodes,
+                                          tabs: movie.movieType == .movie ? [.trailers, .more] : [.episodes, .trailers, .more],
+                                          movie: movie,
+                                          showSeasonPicker: $showSeasonPicker,
+                                          selectedSeason: $selectedSeason,
+                                          movieDetailToShow: $moreMovieDetailToShow)
                             
                             
                         }
@@ -115,6 +121,9 @@ struct MovieDetail: View {
                     }
                     .edgesIgnoringSafeArea(.all)
                 }
+            }
+            if moreMovieDetailToShow != nil {
+                MovieDetail(movie: moreMovieDetailToShow!, movieDetailToShow: $moreMovieDetailToShow)
             }
         }
     }

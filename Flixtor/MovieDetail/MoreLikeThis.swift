@@ -11,6 +11,8 @@ struct MoreLikeThis: View {
     
     var movies: [Movie]
     
+    @Binding var movieDetailToShow: Movie?
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -24,6 +26,9 @@ struct MoreLikeThis: View {
                 StandardHomeMovie(movie: movies[index])
                     .frame(height: 175)
                     .padding(.vertical, 12)
+                    .onTapGesture(perform: {
+                        movieDetailToShow = movies[index]
+                    })
             }
         }
     }
@@ -31,6 +36,6 @@ struct MoreLikeThis: View {
 
 struct MoreLikeThis_Previews: PreviewProvider {
     static var previews: some View {
-        MoreLikeThis(movies: exampleMovies)
+        MoreLikeThis(movies: exampleMovies, movieDetailToShow: .constant(nil))
     }
 }
