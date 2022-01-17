@@ -22,7 +22,6 @@ struct SearchBar: View {
                     .frame(height: 36)
                     .cornerRadius(8)
                     .transition(.move(edge: .trailing))
-                    .animation(.default)
                 
                 HStack {
                     Image(systemName: "magnifyingglass")
@@ -36,9 +35,10 @@ struct SearchBar: View {
                         .cornerRadius(8)
                         .foregroundColor(.white)
                         .onTapGesture(perform: {
-                            isEditing = true
+                            withAnimation(.default) {
+                                isEditing = true
+                            }
                         })
-                        .animation(.default)
                     
                     if !text.isEmpty {
                         if isLoading {
@@ -68,16 +68,17 @@ struct SearchBar: View {
             }
             if isEditing {
                 Button(action: {
-                    text = ""
-                    isEditing = false
-                    hideKeyboard()
+                    withAnimation(.default) {
+                        text = ""
+                        isEditing = false
+                        hideKeyboard()
+                    }
                 }, label: {
                     Text("Cancel")
                         .foregroundColor(.white)
                 })
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
             }
             
         }
