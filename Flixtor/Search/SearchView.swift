@@ -63,7 +63,7 @@ struct SearchView: View {
             }
             
             if movieDetailToShow != nil {
-                MovieDetail(movie: movieDetailToShow!, movieDetailToShow: $movieDetailToShow)
+                MovieDetail(movie: movieDetailToShow!, selectedSeason: movieDetailToShow?.currentEpisode?.season ?? 1, movieDetailToShow: $movieDetailToShow)
             }
         }
         .foregroundColor(.white)

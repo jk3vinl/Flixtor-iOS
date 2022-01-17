@@ -35,7 +35,7 @@ class SearchViewModel: ObservableObject {
     }
     
     private func getPopularMovies() {
-        self.popularMovies = generateMovies(40)
+        self.popularMovies = generateMovies(10)
     }
     
     private func getSearchResults(forText text: String) {
@@ -49,7 +49,7 @@ class SearchViewModel: ObservableObject {
                 self.setViewState(to: .empty)
             } else {
                 // ready view
-                let movies = generateMovies(21)
+                let movies = generateMovies(12)
                 self.searchResults = movies
                 self.setViewState(to: .ready)
             }
