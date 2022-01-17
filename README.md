@@ -5,7 +5,7 @@ iOS streaming app inspired by Netflix that allows you to watch any film and seri
 
 Home Screen Demo:
 
-https://user-images.githubusercontent.com/60042709/149833625-bad72533-f70b-4966-b889-cf9ebe2ce9ea.mp4
+https://user-images.githubusercontent.com/60042709/149833915-9741d68f-f3fb-42e1-9e3c-0433dfa119cb.mp4
 
 
 
